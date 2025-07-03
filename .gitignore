@@ -1,0 +1,17 @@
+.venv
+.vscode
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+*.so
+*.egg-info
+dist
+third_party/SEAL
+build
+cmake
+*.egg
+*.whl
+*.log
+*.bin
+*.key
