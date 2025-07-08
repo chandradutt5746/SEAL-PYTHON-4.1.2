@@ -217,7 +217,7 @@ This project is licensed under the MIT License. See [third_party/SEAL/LICENSE](t
 
 For collaboration, questions, or contributions, please:
 - Open an issue or pull request on GitHub
-- Connect on [LinkedIn](https://www.linkedin.com/in/chandradutt5746/)
+- Connect on [LinkedIn](https://www.linkedin.com/in/cnpatel5746/)
 
 ---
 
