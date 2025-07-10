@@ -35,10 +35,11 @@ PYBIND11_MODULE(seal, m) {
         .value("CKKS", scheme_type::ckks)
         .value("BGV", scheme_type::bgv);
         
-    py::enum_<sec_level_type>(m, "SecLevelType")
+    py::enum_<sec_level_type>(m, "sec_level_type")
         .value("TC128", sec_level_type::tc128)
         .value("TC192", sec_level_type::tc192)
-        .value("TC256", sec_level_type::tc256);
+        .value("TC256", sec_level_type::tc256)
+        .export_values();
 
     
     bind_coeffmodulus(m);

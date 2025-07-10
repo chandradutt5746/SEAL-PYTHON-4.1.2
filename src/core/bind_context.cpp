@@ -55,6 +55,16 @@ void bind_context(py::module &m) {
             py::arg("expand_mod_chain") = true, 
             py::arg("sec_level") = sec_level_type::tc128)
         .def("parameters_set", &SEALContext::parameters_set)
+        .def("get_context_data",  // ADDED OVERLOAD FOR BYTES
+            [](const SEALContext &ctx, py::bytes parms_id_bytes) {
+                std::string bytes = parms_id_bytes;
+                if (bytes.size() != 32) {
+                    throw std::invalid_argument("parms_id must be 32 bytes");
+                }
+                parms_id_type parms_id;
+                std::memcpy(parms_id.data(), bytes.data(), 32);
+                return ctx.get_context_data(parms_id);
+            }, py::arg("parms_id"))
         .def("key_parms_id", [](const SEALContext &ctx) {
             auto id = ctx.key_parms_id();
             return py::bytes(reinterpret_cast<const char*>(id.data()), id.size());
@@ -71,5 +81,14 @@ void bind_context(py::module &m) {
         .def("first_context_data", &SEALContext::first_context_data)
         .def("last_context_data", &SEALContext::last_context_data)
         .def("get_context_data", &SEALContext::get_context_data)
-        .def("using_keyswitching", &SEALContext::using_keyswitching);
+        .def("using_keyswitching", &SEALContext::using_keyswitching)
+        .def("get_chain_index", 
+            [](const SEALContext &ctx, const parms_id_type &parms_id) {
+                auto data = ctx.get_context_data(parms_id);
+                if (!data) throw std::invalid_argument("Invalid parms_id");
+                return data->chain_index();
+            })
+        .def("__repr__", [](const SEALContext &ctx) {
+            return "<SEALContext with " + std::to_string(ctx.first_context_data()->chain_index() + 1) + " modulus levels>";
+        });
 }

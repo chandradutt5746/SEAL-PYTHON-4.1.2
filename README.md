@@ -1,7 +1,7 @@
 # SEAL-PYTHON-4.1.2
 
 **Author:** Chandradutt Patel
-**LinkedIn:** https://github.com/cnpatel5746/
+**LinkedIn:** https://www.linkedin.com/in/cnpatel5746/
 
 A Python binding for [Microsoft SEAL](https://github.com/microsoft/SEAL), enabling easy-to-use homomorphic encryption in Python. This project allows you to perform encrypted computation on real numbers using the CKKS scheme, with support for serialization, bootstrapping, and more.
 
